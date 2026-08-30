@@ -1,0 +1,66 @@
+{
+  "bottle_001": {
+    "related": ["cleaner_002", "bottle_003", "strap_001"],
+    "combo_discount": {
+      "with": "cleaner_002",
+      "combined_price": 599,
+      "label": "TurboSteel Bottle + BottleShine Kit Combo"
+    },
+    "cheaper_alternative": "bottle_002",
+    "better_alternative": "bottle_003"
+  },
+  "bottle_002": {
+    "related": ["strap_001", "filter_002", "bottle_001"],
+    "combo_discount": null,
+    "cheaper_alternative": "bottle_005",
+    "better_alternative": "bottle_001"
+  },
+  "bottle_003": {
+    "related": ["cleaner_003", "filter_001", "strap_002"],
+    "combo_discount": {
+      "with": "cleaner_003",
+      "combined_price": 1099,
+      "label": "TurboSteel Elite + FoamFresh Sterilizer Combo"
+    },
+    "cheaper_alternative": "bottle_001",
+    "better_alternative": null
+  },
+  "thermos_001": {
+    "related": ["mug_001", "cleaner_002", "strap_002"],
+    "combo_discount": null,
+    "cheaper_alternative": null,
+    "better_alternative": "thermos_002"
+  },
+  "thermos_002": {
+    "related": ["mug_001", "filter_001", "cleaner_003"],
+    "combo_discount": {
+      "with": "mug_001",
+      "combined_price": 999,
+      "label": "BrewMaster Thermos + SteadyBreeze Mug Combo"
+    },
+    "cheaper_alternative": "thermos_001",
+    "better_alternative": null
+  },
+  "lunchbox_001": {
+    "related": ["lunchbox_002", "cleaner_002", "strap_001"],
+    "combo_discount": {
+      "with": "lunchbox_002",
+      "combined_price": 899,
+      "label": "StainPro Tiffin + FreshLock Lunch Bag Combo"
+    },
+    "cheaper_alternative": null,
+    "better_alternative": null
+  },
+  "filter_001": {
+    "related": ["bottle_001", "bottle_003", "cleaner_002"],
+    "combo_discount": null,
+    "cheaper_alternative": "filter_002",
+    "better_alternative": null
+  },
+  "mug_001": {
+    "related": ["thermos_001", "thermos_002", "cleaner_002"],
+    "combo_discount": null,
+    "cheaper_alternative": "mug_002",
+    "better_alternative": null
+  }
+}

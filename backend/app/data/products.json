@@ -1,0 +1,182 @@
+[
+  {
+    "id": "bottle_001",
+    "name": "TurboSteel Insulated Bottle 750ml",
+    "price": 499,
+    "category": "water_bottles",
+    "stock": 50,
+    "description": "Premium stainless steel insulated water bottle, 750ml capacity, keeps drinks cold 24hrs and hot 12hrs. Double-wall vacuum insulation, leak-proof lid, BPA-free.",
+    "embedding_text": "TurboSteel insulated water bottle 750ml stainless steel vacuum double wall cold hot drinks leak-proof BPA-free 499 rupees"
+  },
+  {
+    "id": "bottle_002",
+    "name": "AquaFlow Sport Bottle 500ml",
+    "price": 299,
+    "category": "water_bottles",
+    "stock": 80,
+    "description": "Lightweight sport water bottle, 500ml, flip-top lid, ergonomic grip, dishwasher safe. Perfect for gym and outdoor activities.",
+    "embedding_text": "AquaFlow sport water bottle 500ml flip-top lid gym outdoor dishwasher safe lightweight ergonomic 299 rupees"
+  },
+  {
+    "id": "bottle_003",
+    "name": "TurboSteel Elite Bottle 1L",
+    "price": 849,
+    "category": "water_bottles",
+    "stock": 30,
+    "description": "Premium TurboSteel Elite 1-litre insulated bottle with temperature display, 360-degree drinking lid, and carry handle. Ultimate hydration companion.",
+    "embedding_text": "TurboSteel Elite premium water bottle 1 litre temperature display insulated carry handle premium upgrade 849 rupees"
+  },
+  {
+    "id": "cleaner_002",
+    "name": "BottleShine Cleaning Kit",
+    "price": 149,
+    "category": "cleaning",
+    "stock": 120,
+    "description": "Complete bottle cleaning kit: long bristle brush, straw cleaner, and eco-friendly cleaning tablets. Compatible with all bottle sizes and materials.",
+    "embedding_text": "BottleShine bottle cleaning kit brush straw cleaner eco tablets compatible all bottles 149 rupees"
+  },
+  {
+    "id": "cleaner_003",
+    "name": "FoamFresh Bottle Sterilizer",
+    "price": 349,
+    "category": "cleaning",
+    "stock": 45,
+    "description": "UV-C LED sterilizer for bottles and drinkware. Kills 99.9% bacteria in 60 seconds. Rechargeable, portable, compatible with most bottle openings.",
+    "embedding_text": "FoamFresh UV-C LED sterilizer bottles bacteria 99.9% portable rechargeable drinkware 349 rupees"
+  },
+  {
+    "id": "lunchbox_001",
+    "name": "StainPro 3-Tier Lunch Box",
+    "price": 599,
+    "category": "lunch_boxes",
+    "stock": 40,
+    "description": "Stainless steel 3-tier tiffin box with leak-proof gasket lids. Each tier 350ml capacity. Includes carrying bag. Microwave and dishwasher safe outer shell.",
+    "embedding_text": "StainPro stainless steel 3 tier tiffin lunch box 350ml leak-proof carrying bag microwave dishwasher 599 rupees"
+  },
+  {
+    "id": "lunchbox_002",
+    "name": "FreshLock Insulated Lunch Bag",
+    "price": 399,
+    "category": "lunch_boxes",
+    "stock": 60,
+    "description": "Insulated lunch bag with 8L capacity, keeps food fresh for 6 hours. Waterproof exterior, easy-clean interior, adjustable shoulder strap.",
+    "embedding_text": "FreshLock insulated lunch bag 8L waterproof keep fresh 6 hours shoulder strap easy clean 399 rupees"
+  },
+  {
+    "id": "thermos_001",
+    "name": "VacuTherm Flask 350ml",
+    "price": 449,
+    "category": "thermos",
+    "stock": 35,
+    "description": "Compact vacuum flask, 350ml, keeps beverages hot for 18 hours. Stainless steel interior, wide mouth for easy cleaning, push-button lid.",
+    "embedding_text": "VacuTherm vacuum flask 350ml hot 18 hours stainless wide mouth push button lid compact 449 rupees"
+  },
+  {
+    "id": "thermos_002",
+    "name": "BrewMaster Travel Thermos 500ml",
+    "price": 699,
+    "category": "thermos",
+    "stock": 25,
+    "description": "Coffee-grade travel thermos with built-in French press filter. 500ml, hot 20 hours, brew coffee on the go. Matte black powder coat finish.",
+    "embedding_text": "BrewMaster travel thermos coffee French press 500ml 20 hours powder coat matte black brew 699 rupees"
+  },
+  {
+    "id": "bottle_004",
+    "name": "CrystalClear Glass Bottle 600ml",
+    "price": 379,
+    "category": "water_bottles",
+    "stock": 55,
+    "description": "Borosilicate glass water bottle 600ml with silicone sleeve for grip and protection. Time markers for hydration tracking. BPA-free stainless lid.",
+    "embedding_text": "CrystalClear glass borosilicate water bottle 600ml silicone sleeve time markers hydration tracking 379 rupees"
+  },
+  {
+    "id": "bottle_005",
+    "name": "FlexSip Collapsible Bottle 500ml",
+    "price": 249,
+    "category": "water_bottles",
+    "stock": 90,
+    "description": "Collapsible silicone water bottle 500ml. Folds flat when empty. Travel-friendly, clip attachment for backpacks. BPA-free food-grade silicone.",
+    "embedding_text": "FlexSip collapsible silicone water bottle 500ml folds flat travel backpack clip BPA-free 249 rupees"
+  },
+  {
+    "id": "strap_001",
+    "name": "BottleGrip Universal Carrier Strap",
+    "price": 99,
+    "category": "accessories",
+    "stock": 200,
+    "description": "Universal bottle carrier strap fits 90% of water bottles 300ml-1L. Adjustable nylon strap with carabiner hook. Ideal for gym, hikes, commute.",
+    "embedding_text": "BottleGrip bottle carrier strap universal adjustable nylon carabiner gym hiking commute 99 rupees"
+  },
+  {
+    "id": "strap_002",
+    "name": "NeoSleeve Insulated Bottle Pouch",
+    "price": 179,
+    "category": "accessories",
+    "stock": 75,
+    "description": "Neoprene insulated bottle pouch, fits bottles 500ml-750ml. Adds 2 extra hours of insulation. Pocket for keys/cards, clip attachment.",
+    "embedding_text": "NeoSleeve neoprene insulated bottle pouch 500ml 750ml extra insulation pocket keys cards clip 179 rupees"
+  },
+  {
+    "id": "filter_001",
+    "name": "PureFlow Inline Water Filter",
+    "price": 549,
+    "category": "filters",
+    "stock": 30,
+    "description": "Inline water filter for sports and travel bottles. Removes chlorine, bacteria, and heavy metals. 1500L lifespan, fits standard 28mm bottle mouths.",
+    "embedding_text": "PureFlow inline water filter sports travel bottle chlorine bacteria heavy metals 1500L 28mm 549 rupees"
+  },
+  {
+    "id": "filter_002",
+    "name": "CleanSip Filter Straw",
+    "price": 199,
+    "category": "filters",
+    "stock": 60,
+    "description": "Portable filter straw removes 99.99% bacteria and parasites. Works with any bottle or directly from water sources. Lightweight 28g, 1000L capacity.",
+    "embedding_text": "CleanSip filter straw portable bacteria parasites 99.99% any bottle water source lightweight 199 rupees"
+  },
+  {
+    "id": "mug_001",
+    "name": "SteadyBreeze Travel Mug 350ml",
+    "price": 429,
+    "category": "mugs",
+    "stock": 45,
+    "description": "Spill-proof travel mug 350ml with 360-degree sip lid. Triple-wall insulation keeps coffee hot 10 hours. Fits standard car cup holders.",
+    "embedding_text": "SteadyBreeze travel mug 350ml 360 sip lid triple wall insulation coffee hot 10 hours car holder 429 rupees"
+  },
+  {
+    "id": "mug_002",
+    "name": "CeramiCore Desk Mug 400ml",
+    "price": 329,
+    "category": "mugs",
+    "stock": 65,
+    "description": "Ceramic interior insulated desk mug 400ml. Keeps tea/coffee hot 6 hours. Slide-open lid, non-slip base, rich colors. Microwave safe.",
+    "embedding_text": "CeramiCore ceramic desk mug 400ml tea coffee hot 6 hours slide lid non-slip microwave 329 rupees"
+  },
+  {
+    "id": "bundle_001",
+    "name": "HydroKit Complete Hydration Bundle",
+    "price": 799,
+    "category": "bundles",
+    "stock": 20,
+    "description": "Complete hydration bundle: TurboSteel 750ml bottle + BottleShine cleaning kit + BottleGrip carrier strap. Save 20% vs buying separately.",
+    "embedding_text": "HydroKit hydration bundle TurboSteel bottle cleaning kit carrier strap complete set 20% savings 799 rupees"
+  },
+  {
+    "id": "bottle_006",
+    "name": "KiddieSip Fun Bottle 350ml",
+    "price": 219,
+    "category": "water_bottles",
+    "stock": 100,
+    "description": "Kids water bottle 350ml with pop-up straw, fun animal prints, easy-open lid. BPA-free, drop-tested, dishwasher safe. Ages 3+.",
+    "embedding_text": "KiddieSip kids children water bottle 350ml pop-up straw animal prints BPA-free drop-tested dishwasher 219 rupees"
+  },
+  {
+    "id": "bottle_007",
+    "name": "EliteHydro Copper Vessel 1L",
+    "price": 1299,
+    "category": "water_bottles",
+    "stock": 15,
+    "description": "Pure copper Ayurvedic water vessel 1L. Handcrafted, antimicrobial properties, improves water alkalinity. Traditional design with modern seal. Premium gift option.",
+    "embedding_text": "EliteHydro copper vessel Ayurvedic 1 litre handcrafted antimicrobial alkalinity premium gift traditional 1299 rupees"
+  }
+]
