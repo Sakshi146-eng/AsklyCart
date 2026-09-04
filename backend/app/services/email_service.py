@@ -30,10 +30,10 @@ def _build_receipt_html(
         price = item.get("price", 0)
         cart_rows += f"""
         <tr>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0;">{item.get("name", item.get("id"))}</td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; text-align: center;">{qty}</td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; text-align: right;">₹{price:.0f}</td>
-            <td style="padding: 8px 12px; border-bottom: 1px solid #e2e8f0; text-align: right;">₹{price * qty:.0f}</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #222; color: #fff;">{item.get("name", item.get("id"))}</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #222; text-align: center; color: #aaa;">{qty}</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #222; text-align: right; color: #aaa;">₹{price:.0f}</td>
+            <td style="padding: 12px 16px; border-bottom: 1px solid #222; text-align: right; color: #C9A227; font-weight: 600;">₹{price * qty:.0f}</td>
         </tr>
         """
 
@@ -47,60 +47,58 @@ def _build_receipt_html(
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CommerceOps Payment Receipt</title>
 </head>
-<body style="margin: 0; padding: 0; background-color: #f8fafc; font-family: 'Segoe UI', Arial, sans-serif;">
-    <div style="max-width: 600px; margin: 40px auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+<body style="margin: 0; padding: 0; background-color: #080808; font-family: 'Segoe UI', Arial, sans-serif;">
+    <div style="max-width: 600px; margin: 40px auto; background-color: #111111; border-radius: 12px; overflow: hidden; border: 1px solid #222;">
 
         <!-- Header -->
-        <div style="background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%); padding: 40px 32px; text-align: center;">
-            <div style="font-size: 32px; margin-bottom: 8px;">✅</div>
-            <h1 style="color: white; margin: 0; font-size: 24px; font-weight: 700;">Payment Successful</h1>
-            <p style="color: rgba(255,255,255,0.85); margin: 8px 0 0 0; font-size: 14px;">CommerceOps AI Agent Receipt</p>
+        <div style="background: linear-gradient(135deg, #C9A227 0%, #8B6914 100%); padding: 40px 32px; text-align: center;">
+            <div style="font-size: 40px; margin-bottom: 12px;">✅</div>
+            <h1 style="color: #000; margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">Payment Successful</h1>
+            <p style="color: rgba(0,0,0,0.7); margin: 10px 0 0 0; font-size: 14px; font-weight: 500;">CommerceOps AI Agent · Official Receipt</p>
         </div>
 
-        <!-- Order Summary -->
-        <div style="padding: 32px;">
-            <div style="background: #f1f5f9; border-radius: 8px; padding: 16px 20px; margin-bottom: 24px;">
-                <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
-                    <span style="color: #64748b; font-size: 13px;">Session ID</span>
-                    <span style="color: #1e293b; font-size: 13px; font-family: monospace;">{session_id[:16]}...</span>
-                </div>
-                {"<div style='display: flex; justify-content: space-between; margin-bottom: 8px;'><span style='color: #64748b; font-size: 13px;'>Order ID</span><span style='color: #1e293b; font-size: 13px; font-family: monospace;'>" + (order_id or "N/A") + "</span></div>" if order_id else ""}
-                {"<div style='display: flex; justify-content: space-between;'><span style='color: #64748b; font-size: 13px;'>Payment ID</span><span style='color: #1e293b; font-size: 13px; font-family: monospace;'>" + (payment_id or "N/A") + "</span></div>" if payment_id else ""}
+        <!-- Order Meta -->
+        <div style="padding: 24px 32px; border-bottom: 1px solid #222;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                <span style="color: #888; font-size: 13px;">Session ID</span>
+                <span style="color: #C9A227; font-size: 13px; font-family: monospace;">{session_id[:16]}...</span>
             </div>
+            {f"<div style='display:flex;justify-content:space-between;margin-bottom:8px;'><span style='color:#888;font-size:13px;'>Order ID</span><span style='color:#C9A227;font-size:13px;font-family:monospace;'>{order_id}</span></div>" if order_id else ""}
+            {f"<div style='display:flex;justify-content:space-between;'><span style='color:#888;font-size:13px;'>Payment ID</span><span style='color:#C9A227;font-size:13px;font-family:monospace;'>{payment_id}</span></div>" if payment_id else ""}
+        </div>
 
-            <!-- Cart Table -->
-            <h2 style="color: #1e293b; font-size: 16px; font-weight: 600; margin: 0 0 16px 0;">Order Details</h2>
-            <table style="width: 100%; border-collapse: collapse; margin-bottom: 24px;">
+        <!-- Cart Table -->
+        <div style="padding: 32px;">
+            <h2 style="color: #fff; font-size: 16px; font-weight: 600; margin: 0 0 16px 0; text-transform: uppercase; letter-spacing: 1px;">Order Details</h2>
+            <table style="width: 100%; border-collapse: collapse; margin-bottom: 0;">
                 <thead>
-                    <tr style="background: #f8fafc;">
-                        <th style="padding: 10px 12px; text-align: left; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase;">Item</th>
-                        <th style="padding: 10px 12px; text-align: center; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase;">Qty</th>
-                        <th style="padding: 10px 12px; text-align: right; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase;">Price</th>
-                        <th style="padding: 10px 12px; text-align: right; color: #64748b; font-size: 12px; font-weight: 600; text-transform: uppercase;">Total</th>
+                    <tr style="background: #1a1a1a;">
+                        <th style="padding: 10px 16px; text-align: left; color: #888; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Item</th>
+                        <th style="padding: 10px 16px; text-align: center; color: #888; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Qty</th>
+                        <th style="padding: 10px 16px; text-align: right; color: #888; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Price</th>
+                        <th style="padding: 10px 16px; text-align: right; color: #888; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Total</th>
                     </tr>
                 </thead>
                 <tbody>{cart_rows}</tbody>
                 <tfoot>
-                    <tr style="background: #f1f5f9;">
-                        <td colspan="3" style="padding: 12px; text-align: right; font-weight: 700; color: #1e293b;">Total Paid</td>
-                        <td style="padding: 12px; text-align: right; font-weight: 700; color: #6366f1; font-size: 18px;">₹{total:.0f}</td>
+                    <tr style="background: #1a1a1a;">
+                        <td colspan="3" style="padding: 16px; text-align: right; font-weight: 700; color: #aaa; font-size: 14px;">Total Paid</td>
+                        <td style="padding: 16px; text-align: right; font-weight: 800; color: #C9A227; font-size: 22px;">₹{total:.0f}</td>
                     </tr>
                 </tfoot>
             </table>
+        </div>
 
-            <!-- AI Summary -->
-            <div style="background: linear-gradient(135deg, #f0f0ff 0%, #faf5ff 100%); border: 1px solid #e0e7ff; border-radius: 8px; padding: 20px;">
-                <h3 style="color: #4338ca; font-size: 14px; font-weight: 600; margin: 0 0 12px 0; display: flex; align-items: center; gap: 8px;">
-                    🤖 AI Agent Summary
-                </h3>
-                <p style="color: #374151; font-size: 14px; line-height: 1.6; margin: 0;">{report_paragraphs}</p>
-            </div>
+        <!-- AI Summary -->
+        <div style="margin: 0 32px 32px; background: #1a1a1a; border: 1px solid #C9A22733; border-radius: 8px; padding: 20px;">
+            <h3 style="color: #C9A227; font-size: 13px; font-weight: 700; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px;">🤖 AI Agent Summary</h3>
+            <p style="color: #ccc; font-size: 14px; line-height: 1.7; margin: 0;">{report_paragraphs}</p>
         </div>
 
         <!-- Footer -->
-        <div style="background: #f8fafc; padding: 20px 32px; text-align: center; border-top: 1px solid #e2e8f0;">
-            <p style="color: #94a3b8; font-size: 12px; margin: 0;">
-                This receipt was generated by CommerceOps AI Agent.<br>
+        <div style="background: #0d0d0d; padding: 20px 32px; text-align: center; border-top: 1px solid #222;">
+            <p style="color: #555; font-size: 12px; margin: 0;">
+                Generated by <span style="color: #C9A227;">CommerceOps</span> AI Agent<br>
                 Powered by Razorpay test-mode · LangGraph · Groq
             </p>
         </div>
@@ -108,6 +106,7 @@ def _build_receipt_html(
 </body>
 </html>
 """
+
 
 
 async def send_receipt_email(
@@ -121,7 +120,7 @@ async def send_receipt_email(
     """
     Send HTML payment receipt email via SMTP.
 
-    Returns True on success, False on failure (non-fatal — logged but doesn't crash the flow).
+    Returns True on success, False on failure (non-fatal - logged but doesn't crash the flow).
     """
     if not settings.SMTP_USER or not settings.SMTP_PASSWORD:
         logger.warning("smtp_not_configured_skipping_email", session_id=session_id)

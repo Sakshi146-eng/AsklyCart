@@ -12,9 +12,13 @@ from app.routers.session import router as session_router
 from app.routers.search import router as search_router
 from app.routers.consent import router as consent_router
 from app.routers.audit import audit_router, catalog_router
+from app.routers.browse import router as browse_router
+from app.routers.auth import router as auth_router
+from app.routers.user import router as user_router
 from app.services.rabbitmq_client import ensure_retry_queue, close_rabbitmq
 from app.services.redis_client import close_redis
 from app.services.qdrant_service import ensure_collection_exists
+from app.db.database import create_tables
 
 logger = structlog.get_logger()
 settings = get_settings()
@@ -24,6 +28,13 @@ settings = get_settings()
 async def lifespan(app: FastAPI):
     """Application startup and shutdown lifecycle."""
     logger.info("commerceops_starting", env=settings.APP_ENV)
+
+    # Create new DB tables (users, cart_items, orders) — existing tables untouched
+    try:
+        create_tables()
+        logger.info("db_tables_ready")
+    except Exception as e:
+        logger.warning("db_create_tables_warning", error=str(e))
 
     # Ensure Qdrant collection exists
     try:
@@ -65,7 +76,7 @@ app = FastAPI(
 # CORS — allow React frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://frontend:3000", "*"],
+    allow_origins=["http://localhost:3000", "http://localhost:5173", "http://frontend:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -77,6 +88,9 @@ app.include_router(search_router)
 app.include_router(consent_router)
 app.include_router(audit_router)
 app.include_router(catalog_router)
+app.include_router(browse_router)
+app.include_router(auth_router)
+app.include_router(user_router)
 
 
 # ── Health check ──────────────────────────────────────────────────────────
