@@ -268,7 +268,7 @@ DEFAULT_SPENDING_CAP=2000.0
 FORCE_PAYMENT_FAIL=False
 ```
 
-| Variable | Default | Description |
+<!-- | Variable | Default | Description |
 |---|---|---|
 | `GROQ_API_KEY` | — | Required for AI reasoning at each gate |
 | `GROQ_MODEL` | `llama-3.3-70b-versatile` | LLM model for gate reasoning and reports |
@@ -277,7 +277,7 @@ FORCE_PAYMENT_FAIL=False
 | `JWT_SECRET_KEY` | auto-generated | Change in production |
 | `MAX_RETRY_ATTEMPTS` | `2` | Max payment retry attempts before pipeline declines |
 | `DEFAULT_SPENDING_CAP` | `2000.0` | Per-user auto-approve cap in INR |
-| `FORCE_PAYMENT_FAIL` | `False` | Set `True` to always fail payment (tests gate3 retry flow) |
+| `FORCE_PAYMENT_FAIL` | `False` | Set `True` to always fail payment (tests gate3 retry flow) | -->
 
 ---
 
