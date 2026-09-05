@@ -14,6 +14,85 @@ logger = structlog.get_logger()
 settings = get_settings()
 
 
+def _markdown_to_html(text: str) -> str:
+    """Convert basic markdown to HTML for email rendering."""
+    import re
+    lines = text.split("\n")
+    html_lines = []
+    in_list = False
+
+    for line in lines:
+        stripped = line.strip()
+
+        # Horizontal rules (--- or ***)
+        if re.match(r'^[-*]{3,}$', stripped):
+            if in_list:
+                html_lines.append('</ul>')
+                in_list = False
+            html_lines.append('<hr style="border: none; border-top: 1px solid #333; margin: 14px 0;">')
+            continue
+
+        # Numbered list items  (1. text)
+        num_match = re.match(r'^(\d+)\. (.+)', stripped)
+        if num_match:
+            if in_list:
+                html_lines.append('</ul>')
+                in_list = False
+            item_text = num_match.group(2)
+            # bold within item
+            item_text = re.sub(r'\*\*(.+?)\*\*', r'<strong style="color:#fff;">\1</strong>', item_text)
+            html_lines.append(
+                f'<div style="display:flex;gap:10px;margin:6px 0;">'
+                f'<span style="color:#C9A227;font-weight:700;min-width:18px;">{num_match.group(1)}.</span>'
+                f'<span style="color:#ccc;line-height:1.6;">{item_text}</span></div>'
+            )
+            continue
+
+        # Bullet list items  (- text)
+        if stripped.startswith('- '):
+            if not in_list:
+                html_lines.append('<ul style="margin:6px 0 6px 0;padding-left:0;list-style:none;">')
+                in_list = True
+            item_text = stripped[2:]
+            item_text = re.sub(r'\*\*(.+?)\*\*', r'<strong style="color:#fff;">\1</strong>', item_text)
+            html_lines.append(
+                f'<li style="color:#ccc;font-size:14px;line-height:1.6;padding:2px 0;">'
+                f'<span style="color:#C9A227;margin-right:8px;">•</span>{item_text}</li>'
+            )
+            continue
+
+        if in_list:
+            html_lines.append('</ul>')
+            in_list = False
+
+        # Heading lines starting with **text**
+        heading_match = re.match(r'^\*\*(.+?)\*\*$', stripped)
+        if heading_match and stripped:
+            html_lines.append(
+                f'<p style="color:#C9A227;font-size:14px;font-weight:700;margin:12px 0 4px 0;">'
+                f'{heading_match.group(1)}</p>'
+            )
+            continue
+
+        # Empty lines → spacing
+        if stripped == '':
+            html_lines.append('<div style="height:6px;"></div>')
+            continue
+
+        # Regular paragraph — convert inline **bold**
+        paragraph = re.sub(r'\*\*(.+?)\*\*', r'<strong style="color:#fff;">\1</strong>', stripped)
+        # Convert italic *text*
+        paragraph = re.sub(r'\*(.+?)\*', r'<em style="color:#aaa;">\1</em>', paragraph)
+        html_lines.append(
+            f'<p style="color:#ccc;font-size:14px;line-height:1.7;margin:4px 0;">{paragraph}</p>'
+        )
+
+    if in_list:
+        html_lines.append('</ul>')
+
+    return '\n'.join(html_lines)
+
+
 def _build_receipt_html(
     session_id: str,
     report_text: str,
@@ -37,7 +116,7 @@ def _build_receipt_html(
         </tr>
         """
 
-    report_paragraphs = report_text.replace("\n", "<br>")
+    report_paragraphs = _markdown_to_html(report_text)
 
     return f"""
 <!DOCTYPE html>
@@ -45,7 +124,7 @@ def _build_receipt_html(
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CommerceOps Payment Receipt</title>
+    <title>AsklyCart Payment Receipt</title>
 </head>
 <body style="margin: 0; padding: 0; background-color: #080808; font-family: 'Segoe UI', Arial, sans-serif;">
     <div style="max-width: 600px; margin: 40px auto; background-color: #111111; border-radius: 12px; overflow: hidden; border: 1px solid #222;">
@@ -54,7 +133,7 @@ def _build_receipt_html(
         <div style="background: linear-gradient(135deg, #C9A227 0%, #8B6914 100%); padding: 40px 32px; text-align: center;">
             <div style="font-size: 40px; margin-bottom: 12px;">✅</div>
             <h1 style="color: #000; margin: 0; font-size: 26px; font-weight: 800; letter-spacing: -0.5px;">Payment Successful</h1>
-            <p style="color: rgba(0,0,0,0.7); margin: 10px 0 0 0; font-size: 14px; font-weight: 500;">CommerceOps AI Agent · Official Receipt</p>
+            <p style="color: rgba(0,0,0,0.7); margin: 10px 0 0 0; font-size: 14px; font-weight: 500;">AsklyCart AI Agent · Official Receipt</p>
         </div>
 
         <!-- Order Meta -->
@@ -92,13 +171,13 @@ def _build_receipt_html(
         <!-- AI Summary -->
         <div style="margin: 0 32px 32px; background: #1a1a1a; border: 1px solid #C9A22733; border-radius: 8px; padding: 20px;">
             <h3 style="color: #C9A227; font-size: 13px; font-weight: 700; margin: 0 0 12px 0; text-transform: uppercase; letter-spacing: 1px;">🤖 AI Agent Summary</h3>
-            <p style="color: #ccc; font-size: 14px; line-height: 1.7; margin: 0;">{report_paragraphs}</p>
+            <div style="color: #ccc; font-size: 14px; line-height: 1.7; margin: 0;">{report_paragraphs}</div>
         </div>
 
         <!-- Footer -->
         <div style="background: #0d0d0d; padding: 20px 32px; text-align: center; border-top: 1px solid #222;">
             <p style="color: #555; font-size: 12px; margin: 0;">
-                Generated by <span style="color: #C9A227;">CommerceOps</span> AI Agent<br>
+                Generated by <span style="color: #C9A227;">AsklyCart</span> AI Agent<br>
                 Powered by Razorpay test-mode · LangGraph · Groq
             </p>
         </div>
@@ -128,13 +207,13 @@ async def send_receipt_email(
 
     try:
         msg = MIMEMultipart("alternative")
-        msg["Subject"] = f"✅ Payment Receipt — CommerceOps (Session {session_id[:8]}...)"
+        msg["Subject"] = f"✅ Payment Receipt — AsklyCart (Session {session_id[:8]}...)"
         msg["From"] = settings.EMAIL_FROM
         msg["To"] = to_email
 
         total = sum(item.get("price", 0) * item.get("quantity", 1) for item in cart)
         plain_text = (
-            f"Payment Successful — CommerceOps\n\n"
+            f"Payment Successful — AsklyCart\n\n"
             f"Session: {session_id}\n"
             f"Total Paid: ₹{total:.0f}\n\n"
             f"AI Agent Summary:\n{report_text}\n\n"

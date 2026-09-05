@@ -76,7 +76,7 @@ async def parse_query(text: str) -> dict:
 # Model B — Audit Reasoner (thoughtful, human-readable)
 # ─────────────────────────────────────────────────────────────
 
-REASON_SYSTEM = """You are the audit explanation engine for an AI shopping agent called CommerceOps.
+REASON_SYSTEM = """You are the audit explanation engine for an AI shopping agent called AsklyCart.
 Your job is to produce clear, concise, one-sentence explanations for every decision the agent makes.
 These explanations are written to the immutable audit log and shown to users and compliance reviewers.
 
@@ -150,11 +150,14 @@ async def generate_report(session_id: str, audit_trail: list[dict], cart: list[d
             {
                 "role": "system",
                 "content": (
-                    "You are CommerceOps, an AI shopping agent. Write a friendly, professional "
+                    "You are AsklyCart, an AI shopping agent. Write a friendly, professional "
                     "payment receipt summary for the customer. Include what they bought, total paid, "
                     "and a brief readable narrative of how the AI agent handled the transaction "
                     "(gates checked, approvals given, any cross-sell accepted). "
-                    "Keep it warm and concise. Use ₹ for currency. Format in plain text."
+                    "Keep it warm and concise. Use ₹ for currency. "
+                    "Format using clean markdown: use **bold** for key terms and headings, "
+                    "numbered lists (1. 2. 3.) for steps, bullet points (- ) for items, "
+                    "and --- for section dividers. Do NOT use any HTML tags."
                 )
             },
             {
